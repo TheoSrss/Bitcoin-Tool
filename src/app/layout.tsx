@@ -14,9 +14,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <title>Bitcoin Tool</title>
-      </head>
       <body>
         <ThemeProvider
           attribute="class"

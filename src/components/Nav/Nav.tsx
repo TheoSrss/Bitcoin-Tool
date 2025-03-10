@@ -1,12 +1,4 @@
-import {
-    Menubar,
-    MenubarContent,
-    MenubarItem,
-    MenubarMenu,
-    MenubarSeparator,
-    MenubarShortcut,
-    MenubarTrigger,
-} from "@/components/ui/menubar"
+
 import { ModeToggle } from "./ModeToggle"
 import Link from "next/link"
 import Image from "next/image";
@@ -14,7 +6,7 @@ import Image from "next/image";
 export default function Nav() {
     return (
         <div className="w-full mb-5 p-7 border-b-4 border-dotted border-gray-900 dark:border-gray-100  flex items-center justify-between">
-
+            
             <div className="flex items-center">
                 <Link href="/dashboard">
                     <Image
