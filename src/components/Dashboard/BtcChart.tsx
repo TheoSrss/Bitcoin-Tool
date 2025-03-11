@@ -9,7 +9,7 @@ import {TrendingUp} from "lucide-react";
 import btc_history from "../../../public/data/btc_historical.json";
 import ChartToolTipBtc from "@/components/Dashboard/ChartToolTipBtc";
 
-interface BtcHistoryData {
+export interface BtcHistoryData {
     time: number;
     USD: number;
     EUR: number;
