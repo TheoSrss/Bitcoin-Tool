@@ -1,12 +1,33 @@
-import React from "react";
-import {HistoryData} from "@/lib/calculateDCA";
-import {Card, CardContent, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
+"use client";
+
+import React, {useEffect, useState} from "react";
+import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {ChartContainer, ChartTooltip, ChartTooltipContent} from "@/components/ui/chart";
-import {CartesianGrid, Line, LineChart, XAxis, YAxis} from "recharts";
-import {TrendingUp} from "lucide-react";
+import {CartesianGrid, Legend, LegendProps, Line, LineChart, ResponsiveContainer, XAxis, YAxis} from "recharts";
+import {HistoryData} from "@/lib/calculateDCA";
 
 
-export default function DCAChart({history}: {history:HistoryData[]}) {
+const mobileConfig = {
+    tickInterval: 300, angle: 55, margin: 0, dx: 0, tickMargin: 30
+}
+
+const desktopConfig = {
+    tickInterval: 80, angle: 0, margin: 50, dx: 20, tickMargin: 15
+}
+
+export default function DCAChart({history}: { history: HistoryData[] }) {
+
+    const [responsiveData, setResponsiveData] = useState(desktopConfig);
+
+    useEffect(() => {
+        const updateResponsiveConfig = () => {
+            setResponsiveData(window.innerWidth < 768 ? mobileConfig : desktopConfig);
+        };
+
+        updateResponsiveConfig();
+        window.addEventListener("resize", updateResponsiveConfig);
+        return () => window.removeEventListener("resize", updateResponsiveConfig);
+    }, []);
 
     const chartConfig = {
         btc: {
@@ -14,81 +35,96 @@ export default function DCAChart({history}: {history:HistoryData[]}) {
         },
     } satisfies { [key: string]: { label: string; color: string } };
 
-    return (
-        <div className="w-full h-64">
-            <Card className="m-6">
-                <CardHeader className="flex flex-col sm:flex-row items-center justify-between gap-2">
-                    <CardTitle className="text-center sm:text-left">
-                        DCA Chart
-                    </CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <ChartContainer config={chartConfig} className="w-full ">
-                        <LineChart data={history} margin={{left: 100, right: 100}}>
-                            <CartesianGrid vertical={false}/>
+    return (<div className="w-full">
+        <Card className=" md:m-6 ">
+            <CardHeader className="flex flex-col sm:flex-row items-center justify-between gap-2">
+                <CardTitle className="text-center sm:text-left">Result</CardTitle>
+            </CardHeader>
+            <CardContent style={{ height: "60vh" }} >
+                <ChartContainer config={chartConfig} className="w-full h-full" >
+                    <ResponsiveContainer width="100%">
+                        <LineChart data={history}
+                                   margin={{left: responsiveData.margin, right: responsiveData.margin, bottom: 50}}>
+                            <Legend content={<CustomLegend />} verticalAlign='top' />
+                            <CartesianGrid strokeDasharray="5 5"/>
                             <XAxis
                                 dataKey="date"
-                                tickMargin={15}
-                                interval={200}
+                                tickMargin={responsiveData.tickMargin}
+                                interval={responsiveData.tickInterval}
+                                angle={-responsiveData.angle}
                             />
                             <YAxis
                                 yAxisId="left"
                                 tickLine={false}
-                                axisLine={false}
-                                tickMargin={10}
-                                tickFormatter={(value) => `$${value.toFixed(0)}`}
-                                label={{ value: "Valeur en USD", angle: -90, position: "outsideRight" }}
-
+                                axisLine={true}
+                                tickFormatter={(value) => `${value.toFixed(0)}`}
+                                label={{
+                                    value: "USD", angle: -90, position: "insideLeft", dx: -responsiveData.dx,
+                                }}
+                                angle={-responsiveData.angle}
                             />
                             <YAxis
                                 yAxisId="right"
                                 orientation="right"
                                 tickLine={false}
-                                axisLine={false}
-                                tickMargin={10}
-                                tickFormatter={(value) => `${value.toFixed(0)}`}
-                                label={{ value: "Valeur en Sats", angle: 90, position: "outsideLeft", margin: 50 }}
+                                axisLine={true}
+                                tickFormatter={(value) => `${value.toFixed(0).toLocaleString()}`}
+                                label={{
+                                    value: "Sats", angle: 90, position: "insideRight", dx: responsiveData.dx,
+                                }}
+                                angle={responsiveData.angle}
                             />
-
-                            <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
-
+                            <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel/>}/>
                             <Line
                                 dataKey="satsEarned"
-                                type="natural"
-                                stroke='blue'
+                                type="monotone"
+                                stroke="orange"
                                 strokeWidth={2}
                                 dot={false}
                                 yAxisId="right"
+                                animationEasing='linear'
                             />
                             <Line
                                 dataKey="dollarsValue"
-                                type="natural"
-                                stroke='red'
+                                type="monotone"
+                                stroke="blue"
                                 strokeWidth={2}
                                 dot={false}
                                 yAxisId="left"
+                                animationEasing='linear'
                             />
                             <Line
                                 dataKey="dollarsInvested"
-                                type="natural"
-                                stroke='yellow'
+                                type="monotone"
+                                stroke="grey"
                                 strokeWidth={2}
                                 dot={false}
                                 yAxisId="left"
+                                animationEasing='linear'
                             />
                         </LineChart>
-                    </ChartContainer>
-                </CardContent>
-                <CardFooter className="flex-col items-start gap-2 text-sm">
-                    <div className="flex gap-2 font-medium leading-none">
-                        Trending up by 5.2% this month{" "}
-                        <TrendingUp className="h-4 w-4"/>
-                    </div>
-                    <div className="leading-none text-muted-foreground">
-                        Showing price for the last 30 days
-                    </div>
-                </CardFooter>
-            </Card>
+                    </ResponsiveContainer>
+                </ChartContainer>
+            </CardContent>
+        </Card>
+    </div>);
+}
+
+const legendLabels: Record<string, string> = {
+    satsEarned: "Satoshis earned",
+    dollarsValue: "USD amount",
+    dollarsInvested: "USD invested",
+};
+const CustomLegend = (props: LegendProps) => {
+    const { payload } = props;
+    return (
+        <div className="flex justify-center gap-6 md:gap-20 mb-8">
+            {payload?.map((entry, index) => (
+                <div key={`legend-${index}`} className="flex flex-col items-center text-sm font-medium">
+                    <span className="text-gray-700">{legendLabels[entry.value] || entry.value}</span>
+                    <div className="w-16 h-[4px] mt-1 rounded" style={{ backgroundColor: entry.color }} />
+                </div>
+            ))}
         </div>
     );
-}
+};
