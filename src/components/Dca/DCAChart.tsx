@@ -2,9 +2,10 @@
 
 import React, {useEffect, useState} from "react";
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
-import {ChartContainer, ChartTooltip, ChartTooltipContent} from "@/components/ui/chart";
+import {ChartContainer, ChartTooltip} from "@/components/ui/chart";
 import {CartesianGrid, Legend, LegendProps, Line, LineChart, ResponsiveContainer, XAxis, YAxis} from "recharts";
 import {HistoryData} from "@/lib/calculateDCA";
+import ChartToolTipDCA from "@/components/Dca/ChartToolTipDCA";
 
 
 const mobileConfig = {
@@ -36,16 +37,16 @@ export default function DCAChart({history}: { history: HistoryData[] }) {
     } satisfies { [key: string]: { label: string; color: string } };
 
     return (<div className="w-full">
-        <Card className=" md:m-6 ">
+        <Card className=" md:m-6 overflow-x-hidden">
             <CardHeader className="flex flex-col sm:flex-row items-center justify-between gap-2">
                 <CardTitle className="text-center sm:text-left">Result</CardTitle>
             </CardHeader>
-            <CardContent style={{ height: "60vh" }} >
-                <ChartContainer config={chartConfig} className="w-full h-full" >
+            <CardContent style={{height: "60vh"}}>
+                <ChartContainer config={chartConfig} className="w-full h-full">
                     <ResponsiveContainer width="100%">
                         <LineChart data={history}
                                    margin={{left: responsiveData.margin, right: responsiveData.margin, bottom: 50}}>
-                            <Legend content={<CustomLegend />} verticalAlign='top' />
+                            <Legend content={<CustomLegend/>} verticalAlign='top'/>
                             <CartesianGrid strokeDasharray="5 5"/>
                             <XAxis
                                 dataKey="date"
@@ -57,7 +58,11 @@ export default function DCAChart({history}: { history: HistoryData[] }) {
                                 yAxisId="left"
                                 tickLine={false}
                                 axisLine={true}
-                                tickFormatter={(value) => `${value.toFixed(0)}`}
+                                tickFormatter={(value) => {
+                                    if (value / 1000000 > 1) return `${(value / 1000000)}M`
+                                    if (value / 1000 > 1) return `${(value / 1000)}K`
+                                    return `${value.toFixed(0)}`
+                                }}
                                 label={{
                                     value: "USD", angle: -90, position: "insideLeft", dx: -responsiveData.dx,
                                 }}
@@ -68,13 +73,21 @@ export default function DCAChart({history}: { history: HistoryData[] }) {
                                 orientation="right"
                                 tickLine={false}
                                 axisLine={true}
-                                tickFormatter={(value) => `${value.toFixed(0).toLocaleString()}`}
+                                tickFormatter={(value) => {
+                                    if (value / 100000000 > 1) return `${(value / 100000000)}BTC`
+                                    if (value / 1000000 > 1) return `${(value / 1000000)}M`
+                                    if (value / 1000 > 1) return `${(value / 1000)}K`
+                                    return `${value.toFixed(0)}`
+                                }}
                                 label={{
                                     value: "Sats", angle: 90, position: "insideRight", dx: responsiveData.dx,
                                 }}
                                 angle={responsiveData.angle}
                             />
-                            <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel/>}/>
+                            <ChartTooltip
+                                cursor={true}
+                                content={<ChartToolTipDCA/>}
+                            />
                             <Line
                                 dataKey="satsEarned"
                                 type="monotone"
@@ -110,21 +123,16 @@ export default function DCAChart({history}: { history: HistoryData[] }) {
     </div>);
 }
 
-const legendLabels: Record<string, string> = {
-    satsEarned: "Satoshis earned",
-    dollarsValue: "USD amount",
-    dollarsInvested: "USD invested",
+export const legendLabels: Record<string, string> = {
+    satsEarned: "Satoshis earned", dollarsValue: "USD amount", dollarsInvested: "USD invested",
 };
 const CustomLegend = (props: LegendProps) => {
-    const { payload } = props;
-    return (
-        <div className="flex justify-center gap-6 md:gap-20 mb-8">
-            {payload?.map((entry, index) => (
-                <div key={`legend-${index}`} className="flex flex-col items-center text-sm font-medium">
-                    <span className="text-gray-700">{legendLabels[entry.value] || entry.value}</span>
-                    <div className="w-16 h-[4px] mt-1 rounded" style={{ backgroundColor: entry.color }} />
-                </div>
-            ))}
-        </div>
-    );
+    const {payload} = props;
+    return (<div className="flex justify-center gap-6 md:gap-20 mb-8">
+        {payload?.map((entry, index) => (
+            <div key={`legend-${index}`} className="flex flex-col items-center text-sm font-medium">
+                <span className="text-gray-700 dark:text-gray-300">{legendLabels[entry.value] || entry.value}</span>
+                <div className="w-16 h-[4px] mt-1 rounded" style={{backgroundColor: entry.color}}/>
+            </div>))}
+    </div>);
 };
