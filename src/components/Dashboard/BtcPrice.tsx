@@ -28,7 +28,7 @@ const BtcPrice = () => {
                 setPrice(0);
                 setPriceInSat(0);
             }
-        } catch (error) {
+        } catch  {
             setPrice(0);
             setPriceInSat(0);
         }

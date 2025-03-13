@@ -28,13 +28,13 @@ const BtcPriceOriginal = () => {
                 // setCommodity(commodityFind);
                 setLoading(false);
             }
-        } catch (error) {
+        } catch  {
             setLoading(true);
         }
     };
 
     const updateCommodity = (key=commodityKey) => {
-        let commodityFind = data.find((item: { key: string }) => item.key === key);
+        const commodityFind = data.find((item: { key: string }) => item.key === key);
         setCommodity(commodityFind);
         setCommodityKey(commodityFind.key);
     }
