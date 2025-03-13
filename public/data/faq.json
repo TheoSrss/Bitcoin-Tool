@@ -1,0 +1,127 @@
+[
+  {
+    "category": "Ideological and Philosophical",
+    "questions": [
+      {
+        "question": "What is Bitcoin and why was it created?",
+        "answer": "Bitcoin is a decentralized digital currency created in 2008 by a person or group under the pseudonym Satoshi Nakamoto. It was designed to enable peer-to-peer transactions without financial intermediaries, providing an alternative to traditional monetary systems controlled by central institutions."
+      },
+      {
+        "question": "Is Bitcoin really decentralized?",
+        "answer": "Yes, Bitcoin is decentralized as no single entity controls the network. Transactions are verified by a distributed network of nodes, and anyone can participate in mining or running a full node."
+      },
+      {
+        "question": "Can Bitcoin be banned by governments?",
+        "answer": "While some governments have attempted to ban Bitcoin, its decentralized nature makes it difficult to enforce a global ban. Users can still access and use Bitcoin through decentralized networks and peer-to-peer exchanges."
+      },
+      {
+        "question": "Is Bitcoin a Ponzi scheme?",
+        "answer": "No, Bitcoin is not a Ponzi scheme. It does not promise fixed returns, nor does it require new investors to pay old investors. Its value is determined by supply and demand, similar to gold or other scarce assets."
+      },
+      {
+        "question": "Does Bitcoin have intrinsic value?",
+        "answer": "Bitcoin\u2019s value comes from its scarcity, decentralization, security, and network adoption. Like gold, it does not have industrial use, but it serves as a store of value and a hedge against inflation."
+      }
+    ]
+  },
+  {
+    "category": "Technical and Security",
+    "questions": [
+      {
+        "question": "How do Bitcoin transactions work?",
+        "answer": "Bitcoin transactions involve sending BTC from one address to another using cryptographic signatures. Transactions are recorded on the blockchain and confirmed by miners."
+      },
+      {
+        "question": "What is a Bitcoin wallet?",
+        "answer": "A Bitcoin wallet is a digital tool that stores private keys, which are required to sign transactions and access your Bitcoin funds. Wallets can be hardware, software, or paper-based."
+      },
+      {
+        "question": "What happens if I lose my private key?",
+        "answer": "If you lose your private key and have no backup of your recovery phrase, you lose access to your Bitcoin permanently. There is no way to recover lost funds without the private key."
+      },
+      {
+        "question": "How can I secure my Bitcoin?",
+        "answer": "Use a hardware wallet, enable multi-signature security, store recovery phrases securely offline, and avoid phishing scams."
+      },
+      {
+        "question": "Are Bitcoin transactions anonymous?",
+        "answer": "Bitcoin transactions are pseudonymous, meaning they do not directly link to personal identities. However, blockchain analysis can sometimes trace addresses back to users."
+      }
+    ]
+  },
+  {
+    "category": "Economic and Financial",
+    "questions": [
+      {
+        "question": "Is Bitcoin a good investment?",
+        "answer": "Bitcoin is considered a high-risk, high-reward investment. It has shown significant long-term appreciation, but its price is volatile and subject to market cycles."
+      },
+      {
+        "question": "How can I buy Bitcoin?",
+        "answer": "You can buy Bitcoin from cryptocurrency exchanges, peer-to-peer platforms, Bitcoin ATMs, or by earning it in exchange for goods and services."
+      },
+      {
+        "question": "What is Dollar Cost Averaging (DCA)?",
+        "answer": "DCA is an investment strategy where you buy a fixed amount of Bitcoin at regular intervals, reducing the impact of volatility and averaging out purchase prices over time."
+      },
+      {
+        "question": "Can Bitcoin be used as a means of payment?",
+        "answer": "Yes, Bitcoin is accepted by many merchants and can be used for payments online and in some physical stores. The Lightning Network also enables fast and cheap microtransactions."
+      },
+      {
+        "question": "Why does Bitcoin\u2019s price fluctuate so much?",
+        "answer": "Bitcoin\u2019s price is highly volatile due to factors like market speculation, supply and demand, regulatory news, and macroeconomic conditions."
+      }
+    ]
+  },
+  {
+    "category": "Mining and Blockchain",
+    "questions": [
+      {
+        "question": "What is Bitcoin mining?",
+        "answer": "Bitcoin mining is the process of validating transactions and securing the network by solving complex cryptographic puzzles. Miners are rewarded with new bitcoins and transaction fees."
+      },
+      {
+        "question": "Is Bitcoin mining still profitable?",
+        "answer": "Mining profitability depends on electricity costs, hardware efficiency, and Bitcoin\u2019s price. Large-scale mining operations with cheap energy have the most advantage."
+      },
+      {
+        "question": "What is the Bitcoin halving?",
+        "answer": "The Bitcoin halving occurs approximately every four years, reducing the block reward miners receive by 50%. This event slows down the issuance of new BTC and historically influences price trends."
+      },
+      {
+        "question": "What happens when all 21 million bitcoins are mined?",
+        "answer": "Once all bitcoins are mined (around year 2140), miners will rely solely on transaction fees for revenue, ensuring continued network security."
+      },
+      {
+        "question": "What is a Bitcoin node and why should I run one?",
+        "answer": "A Bitcoin node validates transactions and helps secure the network by enforcing consensus rules. Running a node increases decentralization and provides full control over your transactions."
+      }
+    ]
+  },
+  {
+    "category": "Regulation and Legal",
+    "questions": [
+      {
+        "question": "Is Bitcoin legal?",
+        "answer": "Bitcoin is legal in most countries, though some have imposed restrictions or bans. Always check your local regulations before using Bitcoin."
+      },
+      {
+        "question": "Do I have to pay taxes on Bitcoin?",
+        "answer": "In many countries, Bitcoin is subject to capital gains tax when sold for profit. Consult a tax professional to understand your obligations."
+      },
+      {
+        "question": "Can Bitcoin be seized by authorities?",
+        "answer": "If stored in a custodial exchange, Bitcoin can be frozen or seized. However, self-custodied Bitcoin is difficult to seize without access to private keys."
+      },
+      {
+        "question": "What is KYC (Know Your Customer) in crypto exchanges?",
+        "answer": "KYC is a regulatory requirement where exchanges verify user identities to prevent money laundering and fraud."
+      },
+      {
+        "question": "Can Bitcoin be used for illegal activities?",
+        "answer": "Like cash, Bitcoin can be used for both legal and illegal purposes. However, blockchain transparency allows law enforcement to trace illicit transactions."
+      }
+    ]
+  }
+]

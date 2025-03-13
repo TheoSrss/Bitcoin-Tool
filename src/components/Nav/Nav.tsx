@@ -11,7 +11,6 @@ export default function Nav() {
 
     return (
         <nav className="w-full p-5 border-b-4 border-dotted border-gray-900 dark:border-gray-100 flex items-center justify-between">
-            {/* Logo */}
             <div className="flex items-center">
                 <Link href="/dashboard">
                     <Image
@@ -32,8 +31,11 @@ export default function Nav() {
                     <li>
                         <Link href="/dca">DCA Simulation</Link>
                     </li>
+                    {/*<li>*/}
+                    {/*    <Link href="/books">BookShop</Link>*/}
+                    {/*</li>*/}
                     <li>
-                        <Link href="/books">BookShop</Link>
+                        <Link href="/faq">FAQ</Link>
                     </li>
                 </ul>
             </div>
@@ -56,7 +58,8 @@ export default function Nav() {
                     <ul className="flex flex-col items-center gap-6 p-5 uppercase font-bold text-lg">
                         <li><Link href="/dashboard" onClick={() => setIsOpen(false)}>Dashboard</Link></li>
                         <li><Link href="/dca" onClick={() => setIsOpen(false)}>DCA Simulation</Link></li>
-                        <li><Link href="/books" onClick={() => setIsOpen(false)}>BookShop</Link></li>
+                        {/*<li><Link href="/books" onClick={() => setIsOpen(false)}>BookShop</Link></li>*/}
+                        <li><Link href="/faq" onClick={() => setIsOpen(false)}>FAQ</Link></li>
                         <li className="mt-3"><ModeToggle /></li>
                     </ul>
                 </div>
