@@ -12,10 +12,9 @@ interface DCASummaryProps {
 export default function DCASummary({
                                        totalInvested, satsEarned, profitPercent, profitValue
                                    }: DCASummaryProps) {
-    const classProfit ="font-semibold"+(profitValue > 0 ? "text-green-500 dark:text-green-400" : "text-red-500 dark:text-red-400");
+    const classProfit = "font-semibold " + (profitValue > 0 ? "text-green-500 dark:text-green-400" : "text-red-500 dark:text-red-400");
 
-    return (
-        <Card className=" max-w-4xl mx-auto p-6 min-w-1/3  w-full sm:w-auto">
+    return (<Card className=" max-w-4xl mx-auto p-6 min-w-1/3  w-full sm:w-auto">
         <CardHeader>
             <CardTitle className="text-lg font-semibold">
                 <SpanHoverCard label='DCA Summary'>
