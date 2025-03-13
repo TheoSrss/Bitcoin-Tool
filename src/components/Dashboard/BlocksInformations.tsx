@@ -5,7 +5,7 @@ import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {Skeleton} from "@/components/ui/skeleton";
 
 const BlocksInformations = () => {
-    const [transactionsPlanned,setTransactionsPlanned] = useState<number>(0);
+    const [transactionsPlanned, setTransactionsPlanned] = useState<number>(0);
     const [blocksPlanned, setBlocksPlanned] = useState<[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
 
@@ -20,7 +20,6 @@ const BlocksInformations = () => {
             setLoading(false);
         }
     }, [blocksPlanned]);
-    console.log(blocksPlanned);
     const fetchData = async () => {
         setLoading(true);
         try {

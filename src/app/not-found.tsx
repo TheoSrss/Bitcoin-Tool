@@ -9,7 +9,7 @@ export default function NotFound() {
           <p className="text-gray-500">OOOPPPSS !!! You're lost</p>
         </div>
         <Link
-          href="/dashboard"
+          href="/"
           className="inline-flex h-10 items-center rounded-md bg-gray-900 px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-00/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950"
         >
           Return to dashboard

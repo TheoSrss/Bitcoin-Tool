@@ -1,9 +1,17 @@
-// import Image from "next/image";
+import BtcPrice from "@/components/Dashboard/BtcPrice";
+import BtcChart from "@/components/Dashboard/BtcChart";
+import BlocksInformations from "@/components/Dashboard/BlocksInformations";
+import BtcPriceOriginal from "@/components/Dashboard/BtcPriceOriginal";
 
-export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <p className="text-btc">TEST</p> main
-    </div>
-  );
-}
+export default function Dashboard() {
+    return (
+        <div className='mt-10'>
+            <div className='flex flex-row '>
+                <BtcPrice/>
+                <BtcPriceOriginal/>
+                <BlocksInformations/>
+            </div>
+            <BtcChart/>
+        </div>
+    )
+};

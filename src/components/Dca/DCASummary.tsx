@@ -34,7 +34,7 @@ export default function DCASummary({
                     This is the total amount of sats you have earned through the DCA strategy.<br/>
                     1 BTC = 100 000 000 sats
                 </SpanHoverCard>
-                <span className="font-semibold">{satsEarned.toFixed()} sats</span>
+                <span className="font-semibold">{satsEarned.toFixed().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} Sats</span>
             </div>
             <div className="flex justify-between">
                 <SpanHoverCard label='Profit'>

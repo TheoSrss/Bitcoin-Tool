@@ -7,7 +7,7 @@ import Image from "next/image"
 import {Menu, X} from "lucide-react"
 import {usePathname} from "next/navigation";
 
-const NAV_ITEMS = [{name: "Dashboard", path: "/dashboard"}, {name: "DCA Simulation", path: "/dca"}, {
+const NAV_ITEMS = [{name: "Dashboard", path: "/"}, {name: "DCA Simulation", path: "/dca"}, {
     name: "FAQ",
     path: "/faq"
 }]
@@ -19,7 +19,7 @@ export default function Nav() {
         className="w-full p-5 border-b-4 border-dotted border-gray-900 dark:border-gray-100 flex items-center justify-between z-0">
 
         <div className="flex items-center">
-            <Link href="/dashboard">
+            <Link href="/">
                 <Image
                     src="/btc-logo.png"
                     alt="Logo"
