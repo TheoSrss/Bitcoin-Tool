@@ -66,6 +66,7 @@ export default function DCAChart({history}: { history: HistoryData[] }) {
                                 label={{
                                     value: "USD", angle: -90, position: "insideLeft", dx: -responsiveData.dx,
                                 }}
+                                // @ts-expect-error: Ignore TypeScript check for angle property
                                 angle={-responsiveData.angle}
                             />
                             <YAxis
@@ -82,6 +83,7 @@ export default function DCAChart({history}: { history: HistoryData[] }) {
                                 label={{
                                     value: "Sats", angle: 90, position: "insideRight", dx: responsiveData.dx,
                                 }}
+                                // @ts-expect-error: Ignore TypeScript check for angle property
                                 angle={responsiveData.angle}
                             />
                             <ChartTooltip
