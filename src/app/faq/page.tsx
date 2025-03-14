@@ -14,13 +14,12 @@ export default function faq() {
         <span className="relative inline-block font-bold text-lg pt-2 pl-5 mb-8 sm:mb-1 -z-1">
             <span
                 className="absolute -z-10 inset-0 bg-orange-300 opacity-50 blur-lg rounded-full w-[110%] h-[110%] -left-2 top-1"></span>
-
                 You have a question? We have an <span className="text-orange-400">answer</span>
         </span>
 
         <div className='flex flex-col sm:flex-row flex-wrap'>
             {data.map((category: Category, index: number) => (
-                <div key={index} className="w-full lg:w-1/3 md:1/2 sm:p-12">
+                <div key={index} className="w-full lg:w-1/3 md:1/2 sm:p-12 sm:mb-0 mb-12">
                     <h1 className="text-xl font-bold my-2">{category.category} questions</h1>
                     <Accordion type="single" collapsible className="w-full ">
                         {category.questions.map((question: Question, index: number) => (
