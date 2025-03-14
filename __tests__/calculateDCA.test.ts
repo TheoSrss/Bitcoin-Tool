@@ -11,11 +11,9 @@ describe("calculateDCA", () => {
         };
 
         const results: DCAResults = calculateDCA(settings);
-        console.log(results)
-        console.log(results.history[results.history.length - 1])
-        // const expectedPeriods = 52 * 2; // 52 semaines par an * 2 ans
-        // const expectedTotalInvested = 50 * expectedPeriods;
-        // expect(results.totalInvested).toBe(expectedTotalInvested);
+        const expectedPeriods = 52 * 2 + 1;
+        const expectedTotalInvested = 50 * expectedPeriods;
+        expect(results.totalInvested).toBe(expectedTotalInvested);
     });
 
 });

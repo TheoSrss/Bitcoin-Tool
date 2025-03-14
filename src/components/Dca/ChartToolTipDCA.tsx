@@ -6,7 +6,6 @@ function ChartToolTipDCA({active, payload}: TooltipProps<string, number>) {
     if (!active || !payload?.length) return null;
 
     const data = payload[0].payload;
-    console.log(data)
     return (<div className="p-4 bg-white dark:bg-gray-800 text-sm  shadow-md rounded-lg">
             <p className="font-bold mb-2">Date : {data.date}</p>
             <p>{legendLabels.satsEarned} : {data.satsEarned.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, " ")} Sats</p>

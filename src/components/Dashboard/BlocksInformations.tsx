@@ -30,8 +30,7 @@ const BlocksInformations = () => {
                 setBlocksPlanned(data);
             }
 
-        } catch (error) {
-            console.log(error);
+        } catch {
         }
     };
 
